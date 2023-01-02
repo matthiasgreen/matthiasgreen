@@ -1,0 +1,313 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+p{
+    text-align: justify;
+}
+
+.navigationLinks {
+   /* display: inline-flex;*/
+    display: grid;
+    grid-template-columns: repeat(4,1fr) ;
+    list-style-type: none;
+    margin : 0;
+    padding : 0;
+    overflow : hidden;
+    background-color: #fac5e1;
+}
+
+h1,h2 {
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    font-family: 'Dancing Script';
+    color: black;
+    text-align: center;
+}
+
+h1{
+    font-size: 48px;
+}
+
+h2{
+    font-size: 40px;
+}
+
+html {
+    font-family: Calibri, sans-serif;
+}
+
+#presentation {
+    /* background-image: linear-gradient(to bottom, rgba(204, 204, 204, 0.8), rgba(252, 151, 225, 0.8)); */
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-position: bottom left;
+    height : 800px;
+    color: black;
+    font-size: xx-large;
+    text-align: center;
+    height: 150%;
+}
+
+header {
+    margin-bottom: 0px;
+    text-align: center;
+    font-size: x-large;
+    background-color: #C1C0C1;
+}
+
+.articleCentered {
+    padding-top: 2rem;
+    color: black;
+    font-family: 'Lato';
+    padding-left: 15%;
+    padding-right: 15%;
+    text-align: center;
+}
+
+.articleUncentered {
+    padding-top: 2rem;
+    color: black;
+    font-family: 'Lato';
+    padding-left: 15%;
+    padding-right: 15%;
+    text-align: left;
+}
+
+article > p {
+    font-size: 17px;
+}
+
+article > ol {
+    font-size: 17px;
+    list-style-position: inside;
+}
+
+
+.liste1 {
+    float : left;
+    display : block;
+    color : black;
+    text-align : center;
+    padding : 14px 16px;
+    /*outline: 1px solid black;*/ /* use instead of border */
+    
+    margin-top: 1px;
+    margin-left: 1px;
+    font-family: 'Lato';
+    font-weight: bold;
+}
+
+.liste2 {
+    float : left;
+    display : block;
+    color : black ;
+    text-align : center;
+    padding : 14px 16px;
+    /*outline: 1px solid black;*/ /* use instead of border */
+    margin-top: 1px;
+    margin-left: 1px;
+    background-color: #df92bb;
+    font-family: 'Lato';
+    font-weight: bold;
+}
+
+a:link {
+    color : black;
+    text-decoration : none;
+    font-weight: bold;
+}
+
+a:visited {
+    color : black;
+}
+
+.liste1:hover {
+    background-color: #667;
+    font-weight: bold;
+}
+
+body {
+    background-color: whitesmoke;
+    overflow-x: auto;
+    overflow-y: scroll;
+    size: 100%;
+}
+
+footer {
+    position: relative;
+    bottom: 0px;
+    width: 100%;
+    padding: 10px 0;
+    background-color: #C1C0C1;
+}
+
+hr {
+    border : 2px solid #666;
+}
+
+.notrehistoire1, .notrehistoire2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between ;
+    padding: 0; 
+}
+
+.notrehistoire2 > div {
+    padding-right: 2%;
+}
+
+.notrehistoire1 > div {
+    padding-left: 2%;
+}
+
+
+table, th, td {
+    border: 1px solid;
+    border-color: rgb(204, 180, 228);
+}
+
+.tableau{
+
+   text-align: center;
+   border-collapse: collapse;
+   width: 100%;
+   
+}
+   
+thead{
+   background-color: #fac5e1; 
+}
+
+.coach {
+    display:flex;
+    width: auto;
+    border: 2px solid  #df92bb;
+    padding: 50px;
+    margin: 20px;
+    text-align: justify;
+  }
+
+  .container {
+    position: relative;
+    width: 50%;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 300px;
+    width: 300px;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: rgb(234, 127, 202);
+    border-radius: 50%;
+    margin:20px
+  }
+  
+  .container:hover .overlay {
+    opacity: 1;
+  }
+  
+  .text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+  }
+
+.pfp {
+    border-radius:50%;
+    width:300px;
+    height:300px;
+    margin:20px;
+}
+
+.presentation {
+    padding-top: 1%;
+    margin:30px;
+    padding-left: 5%;
+}
+
+.typeCoach {
+    margin: 5px;
+    color: #df92bb;
+}
+
+.mainTables {
+    padding-top: 1%;
+    display: flex;
+    justify-content: center;
+}
+
+.tabito {
+    width: 70%;
+    text-align: center;
+}
+
+.section1 {
+    padding-left: 2%;
+    padding-right: 2%;
+    width : 94%;
+}
+
+
+
+
+
+
+main {
+    width: 100%;
+}
+.col-md-4 {
+    text-align: justify;
+}
+
+label {
+    font-size: 18px;
+}
+
+output {
+    font-size: 16px;
+}
+
+.question {
+    font-size: 16px;
+}
+
+.questionContainer {
+    border: solid 2px rgb(234, 127, 202);
+    border-radius: 1rem;
+    background-color: #F5F5F5;
+    height: 13rem;
+    width: 20rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin:auto;
+}
+
+.qcm {
+    padding-top: 2rem;
+    color: black;
+    font-family: 'Lato';
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: left;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.questionContainer > div {
+    height: auto;
+}
