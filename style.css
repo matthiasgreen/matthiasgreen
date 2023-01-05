@@ -61,6 +61,7 @@ header {
 
 .articleCentered {
     padding-top: 2rem;
+    padding-bottom: 2rem;
     color: black;
     font-family: 'Lato';
     padding-left: 15%;
@@ -261,11 +262,6 @@ thead{
     width : 94%;
 }
 
-
-
-
-
-
 main {
     width: 100%;
 }
@@ -314,4 +310,11 @@ output {
 .questionContainer > div {
     height: auto;
     font-size: medium;
+}
+
+output {
+    font-size: larger;
+    font-weight: bold;
+    color: red;
+    
 }
