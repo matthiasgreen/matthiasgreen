@@ -2,12 +2,13 @@
 let width = 150;
 let height = 150;
 
-const numBoids = 200;
+const numBoids = 400;
 const numPreds = 5;
 const visualRange = 75;
 
 var boids = [];
 var preds = [];
+var startTime = Date.now();
 
 function initBoids() {
   const margin = 200;
@@ -30,6 +31,8 @@ function initPreds() {
       y: Math.random() * height-margin,
       dx: Math.random() * 10 - 5,
       dy: Math.random() * 10 - 5,
+      prevdx: self.dx,
+      prevdy: self.dy,
       history: [],
     };
   }
@@ -56,7 +59,7 @@ function sizeCanvas() {
 // nudge it back in and reverse its direction.
 function keepWithinBounds(boid) {
   const margin = 100;
-  const turnFactor = 1;
+  const turnFactor = 1.5;
 
   if (boid.x < margin) {
     boid.dx += turnFactor;
@@ -140,9 +143,7 @@ function matchOrientation(boid) {
 }
 
 // Move away from other boids that are too close to avoid colliding
-function avoidOthers(boid, list=boids) {
-  const minDistance = 20; // The distance to stay away from other boids
-  const avoidFactor = 0.05; // Adjust velocity by this %
+function avoidOthers(boid, list=boids, minDistance=20, avoidFactor=0.05) {
   let moveX = 0;
   let moveY = 0;
   for (let otherBoid of list) {
@@ -166,6 +167,44 @@ function setSpeed(boid, speedLimit=7) {
   boid.dx = (boid.dx / speed) * speedLimit;
   boid.dy = (boid.dy / speed) * speedLimit;
 }
+
+function adjustValue(a, b, c) {
+  if (Math.abs(a - b) > c) {
+    if (a > b) {
+      b = a - c;
+    } else {
+      b = a + c;
+    }
+  }
+  return b;
+}
+
+function limitTurning(boid, turnLimit=0.2) {
+  boid.dx = adjustValue(boid.prevdx, boid.dx, turnLimit)
+  boid.dy = adjustValue(boid.prevdy, boid.dy, turnLimit)
+}
+
+function eat(pred, threshold=10) {
+  boids = boids.filter(function(boid) {
+    return distance(boid, pred) > threshold;
+  });
+}
+
+// draw the counter
+function drawBoidCount(ctx) {
+  ctx.font = "20px Arial";
+  ctx.fillStyle = "#FFFFFF";
+  ctx.fillText("Boids: " + boids.length, 10, 30);
+
+  // draw the timer
+  var currentTime = Date.now();
+  var elapsedTime = currentTime - startTime;
+  var seconds = Math.floor(elapsedTime / 1000);
+  var minutes = Math.floor(seconds / 60);
+  seconds = seconds % 60;
+  ctx.fillText("Time: " + minutes + ":" + (seconds < 10 ? "0" : "") + seconds, 10, 60);
+}
+
 
 const DRAW_TRAIL = true;
 
@@ -229,8 +268,8 @@ function animationLoop() {
     matchOrientation(boid);
     avoidOthers(boid);
     fleePredator(boid);
-    setSpeed(boid);
     keepWithinBounds(boid);
+    setSpeed(boid);
 
     // Update the position based on the current velocity
     boid.x += boid.dx;
@@ -241,12 +280,15 @@ function animationLoop() {
 
   for (let pred of preds) {
     // Update the velocities according to each rule
-
+    pred.prevdx = pred.dx;
+    pred.prevdy = pred.dy;
     addNoise(pred);
     hunt(pred);
-    avoidOthers(pred, preds)
-    setSpeed(pred, 5);
+    avoidOthers(pred, preds, 100, 0.05);
     keepWithinBounds(pred);
+    limitTurning(pred);
+    eat(pred);
+    setSpeed(pred, 5);
 
     // Update the position based on the current velocity
     pred.x += pred.dx;
@@ -260,6 +302,7 @@ function animationLoop() {
   ctx.clearRect(0, 0, width, height);
   for (let boid of boids) {
     drawBoid(ctx, boid);
+    drawBoidCount(ctx);
   }
   for (let pred of preds) {
     drawPred(ctx, pred);
