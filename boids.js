@@ -2,7 +2,7 @@
 let width = 150;
 let height = 150;
 
-const numBoids = 400;
+const numBoids = 250;
 const numPreds = 5;
 const visualRange = 75;
 
